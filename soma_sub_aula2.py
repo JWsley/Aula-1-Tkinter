@@ -1,6 +1,7 @@
 from cgitb import text
 from tkinter import *
 
+#======================================================
 
 def subt():
     number['text'] = int(number['text'])-1
