@@ -11,9 +11,9 @@ from setuptools import Command
 def resu(): 
    
 
-    if n1.get().isnumeric() and n2.get().isnumeric ():
+    try:
         resultado['text'] = float(n1.get()) + float( n2.get())
-    else:
+    except:
         resultado['text'] = 'valor invalido'
     
 
