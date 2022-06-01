@@ -40,7 +40,7 @@ def imcc():
 
 
 
-    #========================BACK END=================================
+    #========================BACK END================================#
     #=========================FRONT END=================================
     peso = Label(imc ,text ='Peso:',foreground = 'black',font= 'Arial 25')
     peso.grid(column =0,row = 0,sticky=NSEW)
