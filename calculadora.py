@@ -1,7 +1,7 @@
 from cgitb import text
 from tkinter import *
 
-from soma_sub_aula2 import soma
+
 
 
 
