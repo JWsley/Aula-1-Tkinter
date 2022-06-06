@@ -5,7 +5,7 @@ from tkinter import *
 
 
 
-''''
+'''
 def um():
    info['text'] +=  '1'
 
@@ -45,9 +45,38 @@ def dado(valor):
 def clear():
     info['text'] = ''
 
+
+''''
+entrada = '1.21 + 3*4+10-11/79'
+entrada_mod1 = entrada.replace('+',|).replace('-',|).replace('/',|).replace('*',|)
+entradas_mod2 = entrada_mod1.split('|')
+print(entrada)
+print(entrada_mod1)
+print(entrada_mod2)
+
+'''
+
 def resu():
-   resu = eval(info['text'])
-   info['text'] = str(resu)
+   x = info['text']
+   x_mod_1 = x.replace('+','|').replace('-','|').replace('*','|').replace('/','|')
+   x_mod_2 = x_mod_1.split('|')
+
+   c = 0
+
+
+   for i in range(len(x_mod_2)):
+      print (x_mod_2[i].replace('.','1',1).isnumeric())
+      if not x_mod_2[i].replace('.','1',1).isnumeric():
+         c = 1
+      break
+
+
+   if c == 0: 
+      resu = eval(info['text'])  
+      info['text'] = str(resu)
+   else:
+      info['text'] = 'Operação invalida.'
+
 
 def delet():
    info['text'] = info['text'][:-1]
@@ -177,6 +206,7 @@ calc.bind('/', lambda event:dado('/'))
 calc.bind('.', lambda event:dado('.'))
 calc.bind('(', lambda event:dado('('))
 calc.bind(')', lambda event:dado(')'))
+calc.bind('C', lambda event:clear())
 calc.bind('<Return>', lambda event:resu())
 
 
