@@ -13,24 +13,74 @@ colorbg2 = '#0B0729'
 cletra = '#F7F8EE'
 fore = '#5E0401'
 
-#=========  =========================== ==== ======== = ==== ===== ===== =======
-#======== ======== ===== LOGIN=======   ========  == ======== ====== ======= ==== ====== =======
-#= =========== = =  = =============  === ========= ======== ========== ======== ======= =======#
+#=== ========= ============== ============  ===== ==== ====== === ===== ===  =========  =============
+#=== ==== ======= ======= FRAME 4/Login ========= ====== === ========== ========== ========== =======
+#======== === ===== ===== ================= ============== =======#
 
 
  
 def login():
-    log = Toplevel()
-    log.title('Tela de login')
-    log.geometry('600x600+500+250')
-    log.config(bg=colorbg2)
+   frender.destroy()
+   frdados.destroy()
+   frbotao.destroy()
+   frlogin.pack(side=TOP,anchor=CENTER)
+   
+   espaco = Label(frlogin,background=colorbg2)
+   espaco.grid(column=0,row=0,sticky=NSEW)
 
-    text = Label(log,text='Login em desenvolvimento',font='Arial 25',bg=colorbg2,foreground='white').pack()
+   titll = Label(frlogin,text='LOGIN',font='Arial 40',background=colorbg2,foreground='white')
+   titll.grid(row=1,column=1)
 
+   user = Label(frlogin,text=' usuario:',font='Arial 25',foreground=cletra,background=colorbg2)
+   user.grid(row=3,column=1)
+
+   us = Entry(frlogin,text = '',foreground=cletra,background=colorbg1,borderwidth=3)
+   us.grid(row=3,column=2,columnspan=4)
+
+   senha = Label(frlogin,text='Senha:',background=colorbg2,foreground=cletra, font = 'Arial 25')
+   senha.grid(row=4,column=1)
+
+
+   sh = Entry(frlogin,show='*',foreground=cletra,background=colorbg1)
+   sh.grid(row = 4,column=2)
+   sh.bind("<KeyRelease>",censura)
+
+    
 
 #=========  =========== ======== ======== ==================== ==== ====== ==== ===== ===== =======
 #======== ======== ===== FORMATAÇ ÕES ========= ====== ==== ====== ====== ======= ==== ====== =======
-#==== ====== =========== ======== ========== ======== ======= =======#
+#==== ====== =========== ======== ========== ======== ======= ====== ====  =====  ==   ====== =#
+
+
+def telconfig(event = None):
+    
+    tele = tel.get().replace('(','').replace(')','').replace('-','')[:11]
+    new_tele =""
+
+    if event.keysym.lower() == 'Backspace':return
+
+    for c in range(len(tele)):
+
+        if not tele[c] in '0123456789': continue 
+            
+        if c in [0]: 
+            new_tele +=  '('+tele[c] 
+        elif c in [1]: 
+            new_tele += tele[c] + ')'
+        elif c in [6]:
+           new_tele += tele[c] + '-' 
+        else: 
+           new_tele += tele[c]
+                 
+
+
+        tel.delete(0, "end")
+        tel.insert(0, new_tele)
+
+
+
+
+
 def cpfconfig(event = None):
     
     text = cp.get().replace('.','').replace('-','')[:11]
@@ -94,6 +144,7 @@ dado.minsize(width=750,height=500)
 frdados = Frame(dado,bg = colorbg2)
 frdados.pack(side=TOP,anchor=W)
 
+
 frdados.columnconfigure(0,weight=1)
 frdados.columnconfigure(1,weight=1)
 frdados.columnconfigure(2,weight=1)
@@ -125,6 +176,11 @@ frdados.rowconfigure(1,weight=1)
 
 frbotao = Frame(dado,bg=colorbg2)
 frbotao.pack(side=TOP,anchor=W)
+
+
+
+frlogin = Frame(dado,bg=colorbg2)
+
 
 
 
@@ -161,6 +217,7 @@ telf.grid(row=2,column=3,sticky=NSEW)
 
 tel = Entry(frdados,font='Arial 10',foreground=cletra,bg=colorbg1)
 tel.grid(row=2,column=4,sticky=NSEW)
+tel.bind("<KeyRelease>",telconfig)
 
 
 
@@ -265,6 +322,10 @@ espaco.grid(column=0,rowspan=1,sticky=NSEW)
 
 espaco2 = Label(frbotao,text=' ',bg=colorbg2,borderwidth=3)
 espaco2.grid(column=3,rowspan=1,sticky=NSEW)
+
+
+
+
 
 
 dado.mainloop()
