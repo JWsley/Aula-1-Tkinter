@@ -1,8 +1,10 @@
-
+from ast import Return
+from cProfile import label
 import tkinter
 from cgitb import text
 from hashlib import new
 from tkinter import *
+from turtle import bgcolor
 
 
 colorbg1 = '#082629'
@@ -11,15 +13,24 @@ colorbg2 = '#0B0729'
 cletra = '#F7F8EE'
 fore = '#5E0401'
 
+#=========  =========================== ==== ======== = ==== ===== ===== =======
+#======== ======== ===== LOGIN=======   ========  == ======== ====== ======= ==== ====== =======
+#= =========== = =  = =============  === ========= ======== ========== ======== ======= =======#
 
+
+ 
+def login():
+    log = Toplevel()
+    log.title('Tela de login')
+    log.geometry('600x600+500+250')
+    log.config(bg=colorbg2)
+
+    text = Label(log,text='Login em desenvolvimento',font='Arial 25',bg=colorbg2,foreground='white').pack()
 
 
 #=========  =========== ======== ======== ==================== ==== ====== ==== ===== ===== =======
 #======== ======== ===== FORMATAÇ ÕES ========= ====== ==== ====== ====== ======= ==== ====== =======
 #==== ====== =========== ======== ========== ======== ======= =======#
- 
-
-
 def cpfconfig(event = None):
     
     text = cp.get().replace('.','').replace('-','')[:11]
@@ -64,14 +75,20 @@ def dateConfig (event = None):
     d.delete(0,"end")
     d.insert(0, new_date)
 
+
+
+
+  
+  
 ##=========== =======  ============== ========= ============== ======== =====  ======= ##
  
 dado = Tk()
-dado.geometry('1000x500+500+250')
+dado.geometry('750x500+500+250')
 dado.title('Cadastro')
 dado.configure(bg=colorbg2)
-dado.maxsize(width=1000,height=500)
-dado.minsize(width=1000,height=500)
+dado.maxsize(width=750,height=500)
+dado.minsize(width=750,height=500)
+
 
 
 frdados = Frame(dado,bg = colorbg2)
@@ -106,7 +123,6 @@ frdados.rowconfigure(0,weight=1)
 frdados.rowconfigure(1,weight=1)
 
 
-
 frbotao = Frame(dado,bg=colorbg2)
 frbotao.pack(side=TOP,anchor=W)
 
@@ -125,11 +141,12 @@ title.grid(row=0,columnspan=4,sticky=NSEW)
 
 
 nome = Label(frdados,text=' Nome:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
-nome.grid(row=1,column=1,sticky=NSEW)
+nome.grid(row=1,column=1,sticky=NSEW,pady=5)
 
 
 n = Entry(frdados,font='Arial 10',foreground=cletra,bg=colorbg1,borderwidth=3)
-n.grid(row=1,column=2,columnspan = 5,sticky=NSEW)
+n.grid(row=1,column=2,columnspan = 5,sticky=NSEW,pady=5)
+
 
 
 cpf = Label(frdados,text=' CPF:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
@@ -191,24 +208,26 @@ ender = Label(frender,text=' Endereço',font='Arial 20',foreground=cletra,bg = c
 ender.grid(row=0,columnspan=4,sticky=NSEW)
 
 rua = Label(frender,text=' Rua:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
-rua.grid(row=1,column=1,sticky=NSEW)
+rua.grid(row=1,column=1,sticky=NSEW,pady=5)
 
 r = Entry(frender,font='Arial 10',foreground=cletra,bg=colorbg1,width=40,borderwidth=3)
-r.grid(row=1,column=2,columnspan=5,sticky=NSEW)
+r.grid(row=1,column=2,columnspan=3,sticky=NSEW,pady=5)
 
 num = Label(frender,text=' N°:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
-num.grid(row=1,column=5)
+num.grid(row=1,column=5,pady=5)
+
 
 
 n = Entry(frender,font='Arial 10',foreground=cletra,bg=colorbg1,borderwidth=3)
-n.grid(row=1,column=6,sticky=NSEW)
+n.grid(row=1,column=6,sticky=NSEW,ipadx=5,pady=5)
 
 
-barro = Label(frender,text=' Bairro:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
-barro.grid(row=2,column=1,sticky=NSEW)
+
+bairro = Label(frender,text=' Bairro:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
+bairro.grid(row=2,column=1,sticky=NSEW)
 
 b = Entry(frender,font='Arial 10',foreground=cletra,bg=colorbg1,borderwidth=3)
-b.grid(row=2,column=2,sticky=NSEW)
+b.grid(row=2,column=2,sticky=NSEW,ipadx=-0)
 
 cidade = Label(frender,text=' Cidade:',bg=colorbg2,foreground=cletra,font='Arial 10',borderwidth=3)
 cidade.grid(row=2,column=3,sticky=NSEW)
@@ -234,10 +253,10 @@ espaco2.grid(column=7,rowspan=2,sticky=NSEW)
 #=== ==== ======= ======= FRAME 3 ========= ====== === ========== ========== ========== =======
 #======== === ===== ===== ================= ============== =======#
  
-btn1 = Button(frbotao,text='GRAVAR',bg=colorbg2,fg=cletra,borderwidth=3)
+btn1 = Button(frbotao,text='Login',bg=colorbg2,fg=cletra,borderwidth=3,command=login)
 btn1.grid(row =0,column=1,sticky=NSEW)
 
-btn2 = Button(frbotao,text='LISTAR DADOS',bg=colorbg2,fg=cletra,borderwidth=3)
+btn2 = Button(frbotao,text='Sair',bg=colorbg2,fg=cletra,borderwidth=3,command=quit)
 btn2.grid(row =0,column=2,sticky=NSEW)
 
 
