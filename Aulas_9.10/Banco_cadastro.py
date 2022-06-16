@@ -213,7 +213,7 @@ cpf.pack()
 
 #=====================================================MENU DO RG==========================================================
 
-estados =['AC-','AL-''AM-','BA-','ES-','GO-','MA-','MG-','PA-','RJ-','RS-','SP-','TC-']
+estados =['AC-','AL-','AM-','BA-','ES-','GO-','MA-','MG-','PA-','RJ-','RS-','SP-','TC-']
 
 cb = ttk.Combobox(f4,values=estados)
 cb.set('MG-')
